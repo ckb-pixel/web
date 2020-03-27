@@ -1,4 +1,5 @@
-import { SIZE } from './const'
+import paper from 'paper/dist/paper-core'
+import { SIZE, BORDER_COLOR } from './const'
 
 export interface Color {
   r: number
@@ -57,20 +58,31 @@ export default class Editor {
     console.log(`submit: ${JSON.stringify(this.color)}, ${JSON.stringify(this.coordinates)}`)
   }
 
-  public selected = (coordinates: Coordinates) => {
+  public selected = (coordinates: Coordinates, color?: Color) => {
     this.#selected = coordinates
-    this.#editor.querySelector('button').disabled = true
+    this.coordinates = {
+      x: coordinates.x/SIZE + 0.5,
+      y: coordinates.y/SIZE + 0.5,
+    }
+    if (color) {
+      this.color = color
+    }
+    this.#editor.querySelector('button').disabled = false
   }
 
   public unselected = () => {
     this.#selected = null
-    this.#editor.querySelector('button').disabled = false
+    this.#editor.querySelector('button').disabled = true
   }
 
   private updatePreview = ()=>{
     const previewColor = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
     this.#preview.style.backgroundColor = previewColor
-    // TODO: render the preview in the paper
+    if (this.#selected){
+      const path = new paper.Path.Rectangle(new paper.Point(this.#selected.x -SIZE/2, this.#selected.y -SIZE/2), new paper.Size(SIZE, SIZE))
+      path.fillColor = new paper.Color(previewColor)
+      path.strokeColor = new paper.Color(BORDER_COLOR)
+    }
   }
 
   private registerEvents = () => {

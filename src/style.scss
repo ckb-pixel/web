@@ -8,8 +8,10 @@ input {
 }
 
 canvas {
+  display: block;
   background: #fff;
   box-sizing: border-box;
+  margin: 100px auto;
 }
 
 .color {

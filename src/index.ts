@@ -1,6 +1,13 @@
-console.log('This is script')
+import { LENGTH } from './utils/const'
 import { editor } from './utils/Editor'
+import mosaic, { Sample } from './utils/mosaic'
+import mock from './utils/mock'
 
-window.onload = () => {
-  ;(window as any).editor = editor
+const init = () => {
+  const canvas = document.querySelector<HTMLCanvasElement>('#paper')
+  canvas.width = LENGTH
+  canvas.height = LENGTH
+  mosaic(mock as Sample[], canvas)
 }
+
+window.onload = init
