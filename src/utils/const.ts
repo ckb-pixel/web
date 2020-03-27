@@ -7,3 +7,4 @@ export const WS_URL = 'ws://localhost:50001'
 export const UDT_ORIGIN = 'PIXEL'
 
 export const WS_PREFIX = '42/keyper,'
+export const SERVER_URL = 'http://localhost:1000'

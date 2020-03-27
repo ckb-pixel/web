@@ -1,18 +1,42 @@
-import { WS_URL, WS_PREFIX, UDT_ORIGIN } from './const'
+import axios, { AxiosInstance } from 'axios'
+import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL } from './const'
+import mock from './mock'
 
 export type SignObj = any
 
 export default class Client {
   #ws: WebSocket|undefined = undefined
+  #server: AxiosInstance
   constructor(){
+    this.#server = axios.create({
+      baseURL: SERVER_URL,
+    })
+
     const accountElm = document.querySelector('#account')
     accountElm?.addEventListener('click', () => {
       this.getAccounts()
     })
   }
 
+  get server (){
+    return this.#server
+  }
+
   get ws() {
     return this.#ws
+  }
+
+  public getSnapshots = () => {
+    // return this.#server.get('snapshots')
+    return Promise.resolve(Array.from({length: 10}, () => mock))
+  }
+
+  public getCurrentPixels = () => {
+    return this.#server.get('current-pixels')
+  }
+
+  public getIpoInfo = () => {
+    return this.#server.get('ipo')
   }
 
   public getAccounts = () => {
