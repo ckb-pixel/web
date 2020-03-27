@@ -9,6 +9,26 @@
 
   <body>
     <canvas id="paper"></canvas>
+    <form id="editor">
+      <label for="x">X</label>
+      <input type="number" name="x" min="0" max="50" id="x" readonly />
+
+      <label for="y">Y</label>
+      <input type="number" name="y" min="0" max="50" id="y" readonly />
+
+      <label for="red">Red</label>
+      <input type="number" name="r" min="0" max="255" id="red" />
+
+      <label for="green">Green</label>
+      <input type="number" name="g" min="0" max="255" id="green" />
+
+      <label for="blue">Blue</label>
+      <input type="number" name="b" min="0" max="255" id="blue" />
+
+      <div class="color"></div>
+
+      <button type="submit" disabled>Submit</button>
+    </form>
     <script src="./index.ts"></script>
   </body>
 </html>
