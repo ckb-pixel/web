@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
 import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL } from './const'
-import mock from './mock'
 
 export type SignObj = any
 
@@ -27,8 +26,7 @@ export default class Client {
   }
 
   public getSnapshots = () => {
-    // return this.#server.get('snapshots')
-    return Promise.resolve(Array.from({length: 10}, () => mock))
+    return this.#server.get('snapshots')
   }
 
   public getCurrentPixels = () => {

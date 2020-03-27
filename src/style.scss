@@ -32,6 +32,7 @@ input {
 .panel {
   display: flex;
   margin: 0 auto;
+
   canvas {
     box-sizing: border-box;
     margin: 0 auto;
@@ -51,7 +52,7 @@ input {
   background-color: $sec-color;
   overflow: hidden;
   transform: translateX(-$bench-width);
-  animation: bench-appear 2s linear forwards;
+  animation: bench-appear 1s linear forwards;
   opacity: 0;
 }
 
@@ -168,15 +169,28 @@ input {
     font-family: monospace;
     color: #fff;
   }
+
   .history-items {
     display: flex;
+
     canvas {
       margin: 0 15px;
       border: 2px solid black;
       cursor: pointer;
+
       &:hover {
         border: 2px solid #fff;
       }
     }
   }
+}
+
+dialog {
+  // display: flex;
+  // flex-direction: column;
+
+  // .dialog-footer {
+  //   display: flex;
+  //   justify-content: space-around;
+  // }
 }

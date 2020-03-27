@@ -57,7 +57,7 @@ export default class Editor {
   }
 
   set coordinates(coordinates: Partial<Coordinates>){
-    Object.keys(coordinates).forEach(key => {
+    Object.keys(coordinates).forEach((key:'x'|'y') => {
       this.#editor[key].value = coordinates[key]
     })
   }
@@ -77,19 +77,19 @@ export default class Editor {
     if (color) {
       this.color = color
     }
-    this.#editor.querySelector('button').disabled = false
+    this.#editor.querySelector('button')?.disabled = false
   }
 
   public unselected = () => {
     this.#selected = null
-    this.#editor.querySelector('button').disabled = true
+    this.#editor.querySelector('button')?.disabled = true
   }
 
   private updatePreview = ()=>{
     const previewColor = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
     this.#preview.style.backgroundColor = previewColor
     const text = `${previewColor.toUpperCase()}\n${rgbToHex(this.color).toUpperCase()}`
-    this.#preview.querySelector('span').innerText = text
+    this.#preview.querySelector('span')?.innerText = text
     if (this.#selected){
       const path = new paper.Path.Rectangle(new paper.Point(this.#selected.x -SIZE/2, this.#selected.y -SIZE/2), new paper.Size(SIZE, SIZE))
       path.fillColor = new paper.Color(previewColor)
