@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CKB Pixels</title>
-    <link rel="stylesheet" href="./style.scss" />
-  </head>
 
-  <body>
-    <canvas id="paper"></canvas>
-    <form id="editor">
-      <label for="x">X</label>
-      <input type="number" name="x" min="0" max="50" id="x" readonly />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CKB Pixels</title>
+  <link rel="stylesheet" href="./style.scss" />
+</head>
 
-      <label for="y">Y</label>
-      <input type="number" name="y" min="0" max="50" id="y" readonly />
+<body>
+  <main>
+    <div class="ipo"><progress value="90" max="100"></div>
+    <div class="panel">
 
-      <label for="red">Red</label>
-      <input type="number" name="r" min="0" max="255" id="red" />
+      <div class="recent">Recent</div>
 
-      <label for="green">Green</label>
-      <input type="number" name="g" min="0" max="255" id="green" />
+      <canvas id="paper"></canvas>
 
-      <label for="blue">Blue</label>
-      <input type="number" name="b" min="0" max="255" id="blue" />
+      <div class="word-bench">
+        <button type="button">Refresh</button>
+        <form id="editor" class="editor">
+          <label for="x">X</label>
+          <input type="number" name="x" min="0" max="50" id="x" readonly />
 
-      <div class="color"></div>
+          <label for="y">Y</label>
+          <input type="number" name="y" min="0" max="50" id="y" readonly />
 
-      <button type="submit" disabled>Submit</button>
-    </form>
-    <script src="./index.ts"></script>
-  </body>
+          <label for="red">Red</label>
+          <input type="range" name="r" min="0" max="255" id="red" />
+
+          <label for="green">Green</label>
+          <input type="range" name="g" min="0" max="255" id="green" />
+
+          <label for="blue">Blue</label>
+          <input type="range" name="b" min="0" max="255" id="blue" />
+
+          <span>Preview</span>
+          <div class="color"><span></span></div>
+
+          <button type="submit" disabled>Submit</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="./index.ts"></script>
+</body>
+
 </html>

@@ -1,6 +1,7 @@
 import paper from 'paper/dist/paper-core'
 import { SIZE, LENGTH, BORDER_COLOR } from './const'
 import { editor } from './Editor'
+import { data } from './Data'
 
 export interface Sample {
   coordinates: [number, number] //[x,y]
@@ -12,14 +13,20 @@ const isPointInCell = (point: paper.Point, cell: paper.Path.Rectangle) => {
   return x - SIZE / 2 <= point.x && x + SIZE / 2 > point.x && y - SIZE / 2 < point.y && y + SIZE / 2 > point.y
 }
 
+const renderCell = (sample: Sample) => {
+  const cell = new paper.Path.Rectangle(new paper.Point(sample.coordinates), new paper.Size(SIZE, SIZE))
+  cell.fillColor = new paper.Color(`rgb(${sample.color.join(',')})`)
+  cell.strokeColor = new paper.Color(BORDER_COLOR)
+  data.cells.push(cell)
+}
+
 const mosaic = (samples: Sample[], canvas: HTMLCanvasElement) => {
   canvas.width = LENGTH
   canvas.height = LENGTH
   paper.setup(canvas)
-  const cells: paper.Path.Rectangle[] = []
 
   paper.view.onClick = (e: paper.MouseEvent) => {
-    cells.forEach((cell, i) => {
+    data.cells.forEach((cell, i) => {
       if (isPointInCell(e.point, cell)) {
         cell.selected = !cell.selected
         if (cell.selected) {
@@ -39,11 +46,9 @@ const mosaic = (samples: Sample[], canvas: HTMLCanvasElement) => {
   }
 
   samples.forEach(sample => {
-    const cell = new paper.Path.Rectangle(new paper.Point(sample.coordinates), new paper.Size(SIZE, SIZE))
-    cell.fillColor = new paper.Color(`rgb(${sample.color.join(',')})`)
-    cell.strokeColor = new paper.Color(BORDER_COLOR)
-    cells.push(cell)
+    renderCell(sample)
   })
+  canvas.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.12)'
 }
 
 export default mosaic

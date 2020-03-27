@@ -1,6 +1,7 @@
 import paper from 'paper/dist/paper-core'
 import { SIZE, BORDER_COLOR } from './const'
 
+
 export interface Color {
   r: number
   g: number
@@ -10,6 +11,11 @@ export interface Color {
 export interface Coordinates {
   x: number
   y: number
+}
+
+const rgbToHex = (color: Partial<Color>) => {
+  const {r = 0,g = 0, b = 0} = color
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
 }
 
 export default class Editor {
@@ -78,6 +84,8 @@ export default class Editor {
   private updatePreview = ()=>{
     const previewColor = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
     this.#preview.style.backgroundColor = previewColor
+    const text = `${previewColor.toUpperCase()}\n${rgbToHex(this.color).toUpperCase()}`
+    this.#preview.querySelector('span').innerText = text
     if (this.#selected){
       const path = new paper.Path.Rectangle(new paper.Point(this.#selected.x -SIZE/2, this.#selected.y -SIZE/2), new paper.Size(SIZE, SIZE))
       path.fillColor = new paper.Color(previewColor)
