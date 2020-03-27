@@ -15,7 +15,7 @@ import mock11 from './mock/c_11'
 
 export default class Snapshot {
   #showIdx: number|undefined
-  #samplesList: Sample[][] = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, mock11] as any
+  #samplesList: Sample[][] = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, mock11, mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, mock11] as any
   #timer: ReturnType<typeof setTimeout> | undefined
 
   constructor() {

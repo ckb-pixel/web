@@ -116,14 +116,14 @@ export default class Client {
     const [type, ...content] = msg
     if (type !== 'api') return
     if (content[0]?.query === "ALL_LOCKS") {
-      const accounts = content[0].payload
-      const account = accounts[0]
-      if (account) {
-        const {hash, meta: {name, script, deps}}=account
-        document.querySelector<HTMLDivElement>('#account')!.innerText = `Connected as ${hash}`
-      } else {
-        document.querySelector<HTMLDivElement>('#account')!.innerText = `No Account Found`
-      }
+      // const accounts = content[0].payload
+      // const account = accounts[0]
+      // if (account) {
+      //   const {hash, meta: {name, script, deps}}=account
+      //   document.querySelector<HTMLDivElement>('#account')!.innerText = `Connected as ${hash}`
+      // } else {
+      //   document.querySelector<HTMLDivElement>('#account')!.innerText = `No Account Found`
+      // }
     }
   }
 }

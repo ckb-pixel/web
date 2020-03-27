@@ -15,7 +15,7 @@ export default class Data {
   public load = () => {
     const local  = window.localStorage.getItem(this.#key)
     try {
-      this.#samples = JSON.parse(local)
+      this.#samples = JSON.parse(local!)
     } catch {
       // ignore
     }
