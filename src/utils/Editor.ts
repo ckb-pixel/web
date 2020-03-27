@@ -19,13 +19,17 @@ const rgbToHex = (color: Partial<Color>) => {
 }
 
 export default class Editor {
-  #selected: Coordinates | null
+  #selected: Coordinates | null = null
   #editor: HTMLFormElement
   #preview: HTMLDivElement
 
   constructor(){
-    this.#editor = document.querySelector<HTMLFormElement>('#editor')
-    this.#preview = document.querySelector<HTMLDivElement>('.color')
+    this.#editor = document.querySelector<HTMLFormElement>('#editor')!
+    this.#preview = document.querySelector<HTMLDivElement>('.color')!
+
+    if (!this.#editor || !this.#preview) {
+      throw new Error("Failed to initialize editor")
+    }
 
     this.registerEvents()
   }

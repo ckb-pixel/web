@@ -1,7 +1,10 @@
 $length: 800px;
+$sec-color: #b1c2cc;
+$bench-width: 250px;
+$account-height: 50px;
 
 body {
-  background-color: #efefef;
+  background-color: #e8ecf1;
   align-items: center;
   margin: 0;
 }
@@ -29,22 +32,30 @@ canvas {
   margin: 0 auto;
   width: $length;
   height: $length;
+  z-index: 1;
+  background: #d8d9d7;
 }
 
 .panel {
   display: flex;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
 .word-bench {
-  background-color: #efefef;
+  position: absolute;
+  left: calc(50% + 400px);
+  height: $length;
+  width: $bench-width;
+  background-color: $sec-color;
+  overflow: hidden;
+  transform: translateX(-$bench-width);
+  animation: bench-appear 2s linear forwards;
+  opacity: 0;
 }
 
 .editor {
   box-sizing: border-box;
   padding: 10px 15px;
-  height: $length;
   display: flex;
   flex-direction: column;
 
@@ -91,6 +102,59 @@ canvas {
   color: #ccc;
 
   span {
-    mix-blend-mode: color-dodge;
+    mix-blend-mode: difference;
   }
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 2*$account-height);
+  height: $account-height;
+  background: $sec-color;
+  color: #3c4449;
+  padding: 0 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  animation: account-appear 2s linear forwards;
+}
+
+@keyframes bench-appear {
+  from {
+    transform: translateX(-$bench-width);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(-$bench-width);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes account-appear {
+  from {
+    tranform: translate(-50%, $account-height);
+  }
+
+  90% {
+    tranform: translate(-50%, $account-height);
+  }
+
+  to {
+    transform: translate(-50%, 0);
+  }
+
 }
