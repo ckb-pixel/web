@@ -10,7 +10,7 @@ export const WS_PREFIX = '42/keyper,'
 export const SERVER_URL = 'http://pixel.dev.nervos.tech/'
 export const LIVE_CELLS_PATH = 'api/v1/live_cells/' // 'api/v1/live_cells/ckt1qyqd5eyygtdmwdr7ge736zw6z0ju6wsw7rssu8fcve?need_capacity=100000'
 export const PIXEL_CELLS_PATH = 'api/v1/pixel_cells/' // http://pixel.dev.nervos.tech/api/v1/pixel_cells
-export const SNAPSHOTS_PATH = '/api/v1/pixel_cell_recordings?page=1&page_size=1'
+export const SNAPSHOTS_PATH = '/api/v1/pixel_cell_recordings?page_size=10'
 export const IPO_PATH = '/api/v1/ipo_events'
 export const OFFICIAL_ADDRESS = 'ckt1qyqwmndf2yl6qvxwgvyw9yj95gkqytgygwasdjf6hm'
 export const OFFICIAL_LOCK: CKBComponents.Script = {

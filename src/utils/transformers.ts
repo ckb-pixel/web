@@ -6,7 +6,7 @@ export const cellToSample = (cell: any) => ({
     codeHash: cell.attributes.lock.code_hash,
     hashType: cell.attributes.lock.hash_type,
   },
-  type:{
+  type: {
     args: cell.attributes.type.args,
     codeHash: cell.attributes.type.code_hash,
     hashType: cell.attributes.type.hash_type,
@@ -30,8 +30,8 @@ export const recordToSample = (record: any) => {
   if (record?.attributes?.pixel_cells) {
     const cells = record.attributes.pixel_cells
     return cells.map((cell: any) => ({
-      coordinates: [16 * +`0x${cell.data.substr(2, 2)}`, 16 * +`0x${cell.data.substr(4, 2)}`],
-      color: [+`0x${cell.data.substr(6, 2)}`, +`0x${cell.data.substr(8, 2)}`, +`0x${cell.data.substr(10, 2)}`],
+      coordinates: [16 * +`0x${cell.substr(2, 2)}`, 16 * +`0x${cell.substr(4, 2)}`],
+      color: [+`0x${cell.substr(6, 2)}`, +`0x${cell.substr(8, 2)}`, +`0x${cell.substr(10, 2)}`],
     }))
   } else {
     return []
