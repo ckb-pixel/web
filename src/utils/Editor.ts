@@ -1,5 +1,6 @@
 import paper from 'paper/dist/paper-core'
 import { SIZE, BORDER_COLOR } from './const'
+import {data} from './Data'
 import purchase from './purchase'
 
 export interface Color {
@@ -58,7 +59,7 @@ export default class Editor {
 
   set coordinates(coordinates: Partial<Coordinates>){
     Object.keys(coordinates).forEach(key => {
-      this.#editor[key].value = coordinates[key as typeof keyof Coordinates]
+      this.#editor[key].value = coordinates[key as keyof typeof Coordinates]
     })
   }
 
@@ -72,8 +73,8 @@ export default class Editor {
   public selected = (coordinates: Coordinates, color?: Color) => {
     this.#selected = coordinates
     this.coordinates = {
-      x: coordinates.x/SIZE + 0.5,
-      y: coordinates.y/SIZE + 0.5,
+      x: coordinates.x / SIZE + 0.5,
+      y: coordinates.y / SIZE + 0.5,
     }
     if (color) {
       this.color = color
@@ -91,10 +92,10 @@ export default class Editor {
     this.#preview.style.backgroundColor = previewColor
     const text = `${previewColor.toUpperCase()}\n${rgbToHex(this.color).toUpperCase()}`
     this.#preview.querySelector('span')?.innerText = text
-    if (this.#selected){
-      const path = new paper.Path.Rectangle(new paper.Point(this.#selected.x -SIZE/2, this.#selected.y -SIZE/2), new paper.Size(SIZE, SIZE))
-      path.fillColor = new paper.Color(previewColor)
-      path.strokeColor = new paper.Color(BORDER_COLOR)
+    if (this.#selected) {
+      console.log(this.#selected)
+      const cell = data.getCell({coordinates: [this.#selected.x -SIZE/2, this.#selected.y -SIZE/2]})
+      cell?.fillColor = new paper.Color(previewColor)
     }
   }
 

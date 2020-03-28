@@ -47,8 +47,8 @@ export default class Client {
             txHash: cell.attributes.out_point.tx_hash
           },
           coordinates: [
-            +`0x${cell.attributes.output_data.substr(2, 2)}`,
-            +`0x${cell.attributes.output_data.substr(4, 2)}`,
+            16 * +`0x${cell.attributes.output_data.substr(2, 2)}`,
+            16 * +`0x${cell.attributes.output_data.substr(4, 2)}`,
           ],
           color: [
             +`0x${cell.attributes.output_data.substr(6, 2)}`,

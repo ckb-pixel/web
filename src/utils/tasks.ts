@@ -7,7 +7,10 @@ client.getCurrentPixels()
 export const updatePaper = () => {
   client.getCurrentPixels().then(samples => {
     const canvas = document.querySelector<HTMLCanvasElement>('#paper')
-    mosaic(data.samples, canvas)
+    if (canvas) {
+      mosaic(data.samples, canvas)
+    }
+    document.body.classList.remove('initing')
   })
 }
 
@@ -23,7 +26,8 @@ export const initPaper = () => {
 
 export const start = () => {
   initPaper()
+  const INTERVAL_TIME = 10000
 
   updatePaper()
-  setInterval(updatePaper, 10000)
+  // setInterval(updatePaper, INTERVAL_TIME)
 }

@@ -16,10 +16,16 @@ const isPointInCell = (point: paper.Point, cell: paper.Path.Rectangle) => {
 }
 
 const renderCell = (sample: Sample) => {
-  const cell = new paper.Path.Rectangle(new paper.Point(sample.coordinates), new paper.Size(SIZE, SIZE))
-  cell.fillColor = new paper.Color(`rgb(${sample.color.join(',')})`)
-  cell.strokeColor = new paper.Color(BORDER_COLOR)
-  data.cells.push(cell)
+  let cell = data.getCell(sample)
+  const color = new paper.Color(`rgb(${sample.color.join(',')})`)
+  if (cell) {
+    cell.fillColor = color
+  } else {
+    cell = new paper.Path.Rectangle(new paper.Point(sample.coordinates), new paper.Size(SIZE, SIZE))
+    cell.fillColor = color
+    cell.strokeColor = new paper.Color(BORDER_COLOR)
+    data.cells.push(cell)
+  }
 }
 
 const mosaic = (samples: Sample[], canvas: HTMLCanvasElement) => {
