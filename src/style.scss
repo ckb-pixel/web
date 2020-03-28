@@ -401,3 +401,35 @@ dialog {
   transform: translateY(50%);
   pointer-events: none;
 }
+
+@media screen and (max-height: 1050px) {
+  .main-title {
+    transform: translate(-50%, -60px) !important;
+  }
+}
+
+@media screen and (max-height: 986px) {
+  .main-title {
+    transform-origin: top center;
+    transform: translate(-50%, -70px) !important;
+  }
+}
+
+@media screen and (max-height: 959px) {
+  .main-title {
+    transform: translate(-50%, -60px) scale(0.8) !important;
+  }
+}
+
+@media screen and (max-height: 930px) {
+  .main-title {
+    transform: translate(-50%, -50px) scale(0.7) !important;
+  }
+}
+
+@media screen and (max-height: 920px) {
+  .main-title {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
