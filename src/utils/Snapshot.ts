@@ -20,6 +20,11 @@ export default class Snapshot {
   #timer: ReturnType<typeof setTimeout> | undefined
 
   constructor() {
+    this.start()
+  }
+
+  public start = () => {
+
     this.updateData()
     // update mock
     this.updateThumbnails()

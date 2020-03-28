@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
-import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL, PIXEL_CELLS_PATH } from './const'
+import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL, PIXEL_CELLS_PATH, SNAPSHOTS_PATH } from './const'
 import { data } from './Data'
 
 export type SignObj = any
@@ -27,7 +27,17 @@ export default class Client {
   }
 
   public getSnapshots = () => {
-    return this.#server.get('snapshots')
+    return this.#server.get(SNAPSHOTS_PATH)
+    .then(res => {
+      if (res?.data?.data?.length) {
+        return res.data.data
+      } else {
+        return []
+      }
+    }).catch(err => {
+      console.error(err)
+      return []
+    })
   }
 
   public getCurrentPixels = () => {

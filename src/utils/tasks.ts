@@ -2,8 +2,8 @@ import { LENGTH } from './const'
 import { client } from './Client'
 import mosaic from './mosaic'
 import { data } from './Data'
+import { snapshot } from './Snapshot'
 
-client.getCurrentPixels()
 export const updatePaper = () => {
   client.getCurrentPixels().then(samples => {
     const canvas = document.querySelector<HTMLCanvasElement>('#paper')
@@ -25,9 +25,20 @@ export const initPaper = () => {
 }
 
 export const start = () => {
-  initPaper()
-  const INTERVAL_TIME = 10000
+  /**
+   * init the paper
+   */
+  // initPaper()
 
-  updatePaper()
+  /**
+   * start pooling the current state
+   */
+  // const INTERVAL_TIME = 10000
+  // updatePaper()
   // setInterval(updatePaper, INTERVAL_TIME)
+
+  /**
+   * update the snapshots
+   */
+  snapshot.start()
 }

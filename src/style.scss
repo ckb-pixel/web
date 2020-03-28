@@ -4,17 +4,25 @@ $bench-width: 250px;
 $account-height: 50px;
 $navyblue: #170E2B;
 $darkblue: #005693;
-$blue: #009CAB;
+$blue: #008CAB;
 $white: #fff;
 $tan: #BBC69B;
+$eva-green: #2C8C1F;
+$eva-red: #A40B16;
+$eva-purple: #711F8C;
+$splatoon-red: #c83d79;
+$splatoon-dark-red: #320f1e;
+$splatoon-green: #a1f70f;
 
 body {
-  background-color: $darkblue;
+  // background-color: #eee;
+  // background-color: ;
   align-items: center;
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, $navyblue 1.5px, transparent 1px, transparent 10px), $blue;
+  background: radial-gradient(circle at center, #333 1.5px, transparent 1px, transparent 10px),
+    #002a32;
   background-size: 8px 8px;
   font-family: Oswald, sans-serif;
 }
@@ -28,21 +36,66 @@ main {
   align-items: center;
 }
 
+progress {
+  display: none;
+  -webkit-appearance: none;
+  width: 800px;
+  box-sizing: border-box;
+
+  &::-webkit-progress-value {
+    background-color: $splatoon-green !important;
+  }
+
+}
+
+
 .main-title {
   position: absolute;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  color: white;
+  color: $eva-red;
   font-size: 50px;
   font-weight: 900;
   text-transform: uppercase;
-  -webkit-text-stroke: 2px $navyblue;
+  -webkit-text-stroke: 1.2px #ddd;
+  text-shadow: 0 0 15px #ead7a3;
   letter-spacing: 10px;
   margin: 0;
   padding: 0;
   user-select: none;
+  animation: flash 5s infinite reverse;
 }
+
+// @keyframes flash {
+//   from {
+//     filter: drop-shadow(0 0 20px #ead7a3);
+//   }
+
+//   20% {
+//     filter: drop-shadow(0 0 18px #ead7a3);
+//   }
+
+//   40% {
+//     filter: drop-shadow(0 0 16px #ead7a3);
+//   }
+
+//   60% {
+//     filter: drop-shadow(0 0 14px #ead7a3);
+//   }
+
+//   40% {
+//     filter: drop-shadow(0 0 16px #ead7a3);
+//   }
+
+//   20% {
+//     filter: drop-shadow(0 0 18px #ead7a3);
+//   }
+
+//   to {
+//     filter: drop-shadow(0 0 20px #ead7a3);
+//   }
+// }
 
 
 input {
@@ -67,8 +120,9 @@ input {
     width: $length;
     height: $length;
     z-index: 1;
-    background: $tan;
-    box-shadow: 0px 33px rgba(0, 0, 0, 0.2);
+    // background: $tan;
+    background: $splatoon-dark-red;
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -77,8 +131,8 @@ input {
   left: calc(50% + 400px);
   height: $length;
   width: $bench-width;
-  // background: $tan;
-  background: #353353;
+  // background: #353353;
+  background: $splatoon-red;
   overflow: hidden;
   transform: translateX(-$bench-width);
   animation: bench-appear 1s linear forwards;
@@ -160,6 +214,22 @@ input {
     &::-webkit-slider-runnable-track {
       background: linear-gradient(90deg, black, blue);
       border-radius: 7.5px;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: $splatoon-green;
+    color: $navyblue;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #3e6005;
     }
   }
 
