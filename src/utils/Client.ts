@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
-import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL } from './const'
+import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL, PIXEL_CELLS_PATH } from './const'
+import { data } from './Data'
 
 export type SignObj = any
 
@@ -11,10 +12,10 @@ export default class Client {
       baseURL: SERVER_URL,
     })
 
-    const accountElm = document.querySelector('#account')
-    accountElm?.addEventListener('click', () => {
-      this.getAccounts()
-    })
+    // const accountElm = document.querySelector('#account')
+    // accountElm?.addEventListener('click', () => {
+    //   this.getAccounts()
+    // })
   }
 
   get server (){
@@ -30,7 +31,37 @@ export default class Client {
   }
 
   public getCurrentPixels = () => {
-    return this.#server.get('current-pixels')
+    return this.#server.get(PIXEL_CELLS_PATH)
+    .then(res => {
+      if (res?.data?.data?.length) {
+        const cells = res.data.data
+        return cells.map((cell: any) => ({
+          capacity: cell.attributes.capacity,
+          lock: {
+            args: cell.attributes.lock.args,
+            codeHash: cell.attributes.lock.code_hash,
+            hashType: cell.attributes.lock.hash_type,
+          },
+          outPoint:{
+            index: cell.attributes.out_point.index,
+            txHash: cell.attributes.out_point.tx_hash
+          },
+          coordinates: [
+            +`0x${cell.attributes.output_data.substr(2, 2)}`,
+            +`0x${cell.attributes.output_data.substr(4, 2)}`,
+          ],
+          color: [
+            +`0x${cell.attributes.output_data.substr(6, 2)}`,
+            +`0x${cell.attributes.output_data.substr(8, 2)}`,
+            +`0x${cell.attributes.output_data.substr(10, 2)}`,
+          ]
+        }))
+      } else {
+        return []
+      }
+    }).then(samples => {
+      data.update(samples)
+    })
   }
 
   public getIpoInfo = () => {

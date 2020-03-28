@@ -2,7 +2,6 @@ import { Sample } from './mosaic'
 import paper from 'paper/dist/paper-core'
 export default class Data {
   #key = 'samples'
-
   #samples: Sample[]= []
   cells: paper.Path.Rectangle[] = []
   constructor(){
@@ -29,8 +28,9 @@ export default class Data {
     }
   }
 
-  public fetch () {
-    // TODO:
+  public update = (samples: Sample[]) => {
+    this.#samples = samples
+    this.save()
   }
 
 }

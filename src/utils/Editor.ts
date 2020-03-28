@@ -57,15 +57,15 @@ export default class Editor {
   }
 
   set coordinates(coordinates: Partial<Coordinates>){
-    Object.keys(coordinates).forEach((key:'x'|'y') => {
-      this.#editor[key].value = coordinates[key]
+    Object.keys(coordinates).forEach(key => {
+      this.#editor[key].value = coordinates[key as typeof keyof Coordinates]
     })
   }
 
   public submit = (e: Event) => {
     e.preventDefault()
     e.stopPropagation()
-    purchase()
+    purchase({})
     console.log(`submit: ${JSON.stringify(this.color)}, ${JSON.stringify(this.coordinates)}`)
   }
 

@@ -4,6 +4,8 @@ import { editor } from './Editor'
 import { data } from './Data'
 
 export interface Sample {
+  capcaity: string
+  outPoint: { index: string; txHash: string }
   coordinates: [number, number] //[x,y]
   color: [number, number, number] //[r,g,b]
 }
