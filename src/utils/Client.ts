@@ -18,7 +18,7 @@ export type SignObj = {
 export default class Client {
   #ws: WebSocket|undefined = undefined
   #server: AxiosInstance
-  constructor(){
+  constructor() {
     this.#server = axios.create({
       baseURL: SERVER_URL,
     })
@@ -29,7 +29,7 @@ export default class Client {
     })
   }
 
-  get server (){
+  get server() {
     return this.#server
   }
 
@@ -109,11 +109,9 @@ export default class Client {
       }
 
       return
-    }
-    catch (err) {
+    } catch (err) {
       return console.error(err)
     }
-
   }
 
   public close = () => {
@@ -154,7 +152,6 @@ export default class Client {
   private handleMsg = async (msg:any[]) => {
     const [type, ...content] = msg
     if (type !== 'api') return
-    console.log(content)
     if (content[0]?.query === "ALL_LOCKS") {
       const accounts = content[0].payload
       const account = accounts[0]

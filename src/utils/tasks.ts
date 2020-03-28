@@ -5,7 +5,7 @@ import { data } from './Data'
 import { snapshot } from './Snapshot'
 
 export const updatePaper = () => {
-  client.getCurrentPixels().then(samples => {
+  client.getCurrentPixels().then(() => {
     const canvas = document.querySelector<HTMLCanvasElement>('#paper')
     if (canvas) {
       mosaic(data.samples, canvas)

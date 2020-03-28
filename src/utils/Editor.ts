@@ -78,12 +78,12 @@ export default class Editor {
     if (color) {
       this.color = color
     }
-    this.#editor.querySelector('button[type=submit]')!.disabled = false
+    this.#editor.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = false
   }
 
   public unselected = () => {
     this.#selected = null
-    this.#editor.querySelector('button[type=submit]')!.disabled = true
+    this.#editor.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = true
   }
 
   private updatePreview = ()=>{

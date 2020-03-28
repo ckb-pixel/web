@@ -43,7 +43,7 @@ export default class Transaction {
     }
   }
 
-  get current(){
+  get current() {
     return this.#current
   }
 }

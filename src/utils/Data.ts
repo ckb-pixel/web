@@ -1,19 +1,19 @@
 import { SIZE } from './const'
 import { Sample } from './mosaic'
-import paper from 'paper/dist/paper-core'
+
 export default class Data {
   #key = 'samples'
-  #samples: Sample[]= []
+  #samples: Sample[] = []
   cells: paper.Path.Rectangle[] = []
-  constructor(){
+  constructor() {
     this.load()
   }
 
-  get samples(){
+  get samples() {
     return this.#samples || []
   }
   public load = () => {
-    const local  = window.localStorage.getItem(this.#key)
+    const local = window.localStorage.getItem(this.#key)
     try {
       this.#samples = JSON.parse(local!)
     } catch {

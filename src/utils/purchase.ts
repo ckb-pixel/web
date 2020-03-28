@@ -1,10 +1,10 @@
+import BN from 'bn.js'
 import { OFFICIAL_LOCK, SIZE } from './const'
 import { bech32Address, scriptToHash } from '@nervosnetwork/ckb-sdk-utils'
 import Tranaction from './Transaction'
 import { Coordinates, Color } from './Editor'
 import { client, SignObj } from './Client'
 import { data } from './Data'
-import BN from 'bn.js'
 
 export interface Pixel {
   coordinates: Coordinates
