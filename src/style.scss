@@ -2,29 +2,82 @@ $length: 800px;
 $sec-color: #b1c2cc;
 $bench-width: 250px;
 $account-height: 50px;
-$navyblue: #170E2B;
+$navyblue: #170e2b;
 $darkblue: #005693;
-$blue: #008CAB;
+$blue: #008cab;
 $white: #fff;
-$tan: #BBC69B;
-$eva-green: #2C8C1F;
-$eva-red: #A40B16;
-$eva-purple: #711F8C;
+$tan: #bbc69b;
+$eva-green: #2c8c1f;
+$eva-red: #a40b16;
+$eva-purple: #711f8c;
 $splatoon-red: #c83d79;
 $splatoon-dark-red: #320f1e;
 $splatoon-green: #a1f70f;
 
 body {
-  // background-color: #eee;
-  // background-color: ;
   align-items: center;
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, #333 1.5px, transparent 1px, transparent 10px),
-    #002a32;
+  background: radial-gradient(circle at center, #333 1.5px, transparent 1px, transparent 10px), #002a32;
   background-size: 8px 8px;
   font-family: Oswald, sans-serif;
+
+  &::after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    color: $eva-red;
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1.2px #ddd;
+    text-shadow: 0 0 15px #ead7a3;
+    letter-spacing: 10px;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    z-index: 1;
+  }
+
+  &.loaded {
+    &::after {
+      animation: cover-dismiss 1s linear forwards;
+      pointer-events: none;
+    }
+
+    .main-title {
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, -50px);
+
+      &::before {
+        animation: cover-dismiss 1s linear forwards;
+      }
+    }
+
+    .support {
+      animation: cover-dismiss 1s linear forwards;
+    }
+  }
+}
+
+@keyframes cover-dismiss {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
 }
 
 main {
@@ -45,15 +98,14 @@ progress {
   &::-webkit-progress-value {
     background-color: $splatoon-green !important;
   }
-
 }
-
 
 .main-title {
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  top: 50%;
+  transition: all 1s linear;
+  transform: translate(-50%, -50%);
   color: $eva-red;
   font-size: 50px;
   font-weight: 900;
@@ -64,43 +116,21 @@ progress {
   margin: 0;
   padding: 0;
   user-select: none;
-  animation: flash 5s infinite reverse;
+  z-index: 2;
+  text-align: center;
+
+  &:before {
+    display: block;
+    content: 'LOADING ';
+  }
 }
 
-// @keyframes flash {
-//   from {
-//     filter: drop-shadow(0 0 20px #ead7a3);
-//   }
-
-//   20% {
-//     filter: drop-shadow(0 0 18px #ead7a3);
-//   }
-
-//   40% {
-//     filter: drop-shadow(0 0 16px #ead7a3);
-//   }
-
-//   60% {
-//     filter: drop-shadow(0 0 14px #ead7a3);
-//   }
-
-//   40% {
-//     filter: drop-shadow(0 0 16px #ead7a3);
-//   }
-
-//   20% {
-//     filter: drop-shadow(0 0 18px #ead7a3);
-//   }
-
-//   to {
-//     filter: drop-shadow(0 0 20px #ead7a3);
-//   }
-// }
-
+input,
+button {
+  outline: none;
+}
 
 input {
-  outline: none;
-
   &[readonly] {
     border: none;
     background: rgba(255, 255, 255, 0.5);
@@ -120,18 +150,18 @@ input {
     width: $length;
     height: $length;
     z-index: 1;
-    // background: $tan;
     background: $splatoon-dark-red;
     box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.5);
   }
 }
 
 .word-bench {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   left: calc(50% + 400px);
   height: $length;
   width: $bench-width;
-  // background: #353353;
   background: $splatoon-red;
   overflow: hidden;
   transform: translateX(-$bench-width);
@@ -139,6 +169,29 @@ input {
   opacity: 0;
   padding-top: 30px;
   box-sizing: border-box;
+
+  button {
+    border: none;
+    background-color: $splatoon-green;
+    color: $navyblue;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: #b1c2cc;
+      color: #333;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #3e6005;
+    }
+  }
 }
 
 .editor {
@@ -146,7 +199,8 @@ input {
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
+  // height: 100%;
 
   .coordinates {
     display: flex;
@@ -165,7 +219,6 @@ input {
         flex: 1;
       }
     }
-
   }
 
   .field {
@@ -180,7 +233,6 @@ input {
     input {
       flex: 1;
     }
-
   }
 
   input[type='range'] {
@@ -216,23 +268,6 @@ input {
       border-radius: 7.5px;
     }
   }
-
-  button {
-    border: none;
-    background-color: $splatoon-green;
-    color: $navyblue;
-    font-size: 20px;
-    padding: 10px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: all 0.2s linear;
-
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px #3e6005;
-    }
-  }
-
 }
 
 .preview {
@@ -259,26 +294,9 @@ input {
   }
 }
 
-
-// .account {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: absolute;
-//   bottom: 0;
-//   left: 50%;
-//   transform: translate(-50%, 2 * $account-height);
-//   height: $account-height;
-//   background: $sec-color;
-//   color: #3c4449;
-//   padding: 0 100px;
-//   cursor: pointer;
-//   white-space: nowrap;
-//   font-size: 20px;
-//   border-top-left-radius: 5px;
-//   border-top-right-radius: 5px;
-//   animation: account-appear 2s linear forwards;
-// }
+.account {
+  margin: 0 15px 15px;
+}
 
 @keyframes bench-appear {
   from {
@@ -347,11 +365,39 @@ input {
 }
 
 dialog {
-  // display: flex;
-  // flex-direction: column;
+  border: none;
+  padding: 0;
+  line-height: 0;
 
-  // .dialog-footer {
-  //   display: flex;
-  //   justify-content: space-around;
-  // }
+  .dialog-footer {
+    display: flex;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: $splatoon-green;
+    color: $navyblue;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    user-select: none;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #3e6005;
+    }
+  }
+}
+
+.support {
+  font-size: 12px;
+  font-family: monospace;
+  transform: translateY(50%);
+  pointer-events: none;
 }

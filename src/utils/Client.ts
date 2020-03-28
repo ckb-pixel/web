@@ -1,8 +1,19 @@
 import axios, { AxiosInstance } from 'axios'
-import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL, PIXEL_CELLS_PATH, SNAPSHOTS_PATH } from './const'
+import { WS_URL, WS_PREFIX, UDT_ORIGIN, SERVER_URL, PIXEL_CELLS_PATH, SNAPSHOTS_PATH, LIVE_CELLS_PATH, IPO_PATH } from './const'
 import { data } from './Data'
+import { cellToSample, recordToSample } from './transformers'
 
-export type SignObj = any
+// target: scriptToHash(lock),
+// tx: rawTx,
+// config: {index: 1, length: rawTx.witnesses.length-1}
+export type SignObj = {
+  target: string // scriptToHash(lock)
+  tx: object, // rawTx
+  config: {
+    index: number, // 1
+    length: number // rawTx.witnesses.length - 1
+  }
+}
 
 export default class Client {
   #ws: WebSocket|undefined = undefined
@@ -12,10 +23,10 @@ export default class Client {
       baseURL: SERVER_URL,
     })
 
-    // const accountElm = document.querySelector('#account')
-    // accountElm?.addEventListener('click', () => {
-    //   this.getAccounts()
-    // })
+    const accountElm = document.querySelector('#account')
+    accountElm?.addEventListener('click', () => {
+      this.getAccounts()
+    })
   }
 
   get server (){
@@ -26,11 +37,18 @@ export default class Client {
     return this.#ws
   }
 
+  public getLiveCells = (address: string, amount: string) => {
+    return this.#server.get(`${LIVE_CELLS_PATH}${address}?need_capacity=${amount}`)
+  }
+
   public getSnapshots = () => {
     return this.#server.get(SNAPSHOTS_PATH)
     .then(res => {
       if (res?.data?.data?.length) {
-        return res.data.data
+        const recordingList = res.data.data
+        return recordingList.map((recording: any) => {
+          return recordToSample(recording)
+        })
       } else {
         return []
       }
@@ -45,27 +63,7 @@ export default class Client {
     .then(res => {
       if (res?.data?.data?.length) {
         const cells = res.data.data
-        return cells.map((cell: any) => ({
-          capacity: cell.attributes.capacity,
-          lock: {
-            args: cell.attributes.lock.args,
-            codeHash: cell.attributes.lock.code_hash,
-            hashType: cell.attributes.lock.hash_type,
-          },
-          outPoint:{
-            index: cell.attributes.out_point.index,
-            txHash: cell.attributes.out_point.tx_hash
-          },
-          coordinates: [
-            16 * +`0x${cell.attributes.output_data.substr(2, 2)}`,
-            16 * +`0x${cell.attributes.output_data.substr(4, 2)}`,
-          ],
-          color: [
-            +`0x${cell.attributes.output_data.substr(6, 2)}`,
-            +`0x${cell.attributes.output_data.substr(8, 2)}`,
-            +`0x${cell.attributes.output_data.substr(10, 2)}`,
-          ]
-        }))
+        return cells.map(cellToSample)
       } else {
         return []
       }
@@ -75,16 +73,16 @@ export default class Client {
   }
 
   public getIpoInfo = () => {
-    return this.#server.get('ipo')
+    return this.#server.get(IPO_PATH).then(res => res.data.data?.[0])
   }
 
   public getAccounts = () => {
     const msg = `42/keyper,["api", {"data": {"origin": "${UDT_ORIGIN}", "payload": {"method": "ALL_LOCKS"}}, "type":"query"}]`
     this.send(msg)
   }
-
   public signTx = (signObj: SignObj) => {
-    const msg = `42/keyper,["api", {"data": {"origin": "${UDT_ORIGIN}", "payload":${JSON.stringify(signObj)}}, "type":"sign"}]`
+    const signObjStr = JSON.stringify(signObj)
+    const msg = `42/keyper,["api", {"data": {"origin": "${UDT_ORIGIN}", "payload": ${signObjStr}}, "type":"sign"}]`
     this.#ws!.send(msg)
   }
 
@@ -153,18 +151,24 @@ export default class Client {
     })
   }
 
-  private handleMsg = (msg:any[]) => {
+  private handleMsg = async (msg:any[]) => {
     const [type, ...content] = msg
     if (type !== 'api') return
+    console.log(content)
     if (content[0]?.query === "ALL_LOCKS") {
-      // const accounts = content[0].payload
-      // const account = accounts[0]
-      // if (account) {
-      //   const {hash, meta: {name, script, deps}}=account
-      //   document.querySelector<HTMLDivElement>('#account')!.innerText = `Connected as ${hash}`
-      // } else {
-      //   document.querySelector<HTMLDivElement>('#account')!.innerText = `No Account Found`
-      // }
+      const accounts = content[0].payload
+      const account = accounts[0]
+      if (account) {
+        const { hash, meta: { name, script, deps }} = account
+        const accountBtn = document.querySelector<HTMLDivElement>('#account')
+        if (accountBtn) {
+          accountBtn.innerText = `Connected`
+          accountBtn.dataset.hash = hash
+          accountBtn.dataset.lock = JSON.stringify(script)
+        }
+      } else {
+        window.alert('No Account Found')
+      }
     }
   }
 }

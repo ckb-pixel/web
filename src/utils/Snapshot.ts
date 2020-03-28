@@ -1,21 +1,9 @@
 import { SIZE, LENGTH } from './const'
 import { Sample } from './mosaic'
 import { client } from './Client'
-// import mock1 from './mock/c_1'
-// import mock2 from './mock/c_2'
-// import mock3 from './mock/c_3'
-// import mock4 from './mock/c_4'
-// import mock5 from './mock/c_5'
-// import mock6 from './mock/c_6'
-// import mock7 from './mock/c_7'
-// import mock8 from './mock/c_8'
-// import mock9 from './mock/c_9'
-// import mock10 from './mock/c_10'
-// import mock11 from './mock/c_11'
 
 export default class Snapshot {
   #showIdx: number|undefined
-  // #samplesList: Sample[][] = [mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, mock11, mock1, mock2, mock3, mock4, mock5, mock6, mock7, mock8, mock9, mock10, mock11] as any
   #samplesList: Sample[][] = []
   #timer: ReturnType<typeof setTimeout> | undefined
 
@@ -106,9 +94,9 @@ export default class Snapshot {
           const btns = document.createElement('div')
           btns.className='dialog-footer'
           btns.appendChild(prevBtn)
-          btns.appendChild(closeBtn)
-          btns.appendChild(playBtn)
           btns.appendChild(nextBtn)
+          btns.appendChild(playBtn)
+          btns.appendChild(closeBtn)
 
           dialog.innerHTML = ''
           dialog.appendChild(snapshot)

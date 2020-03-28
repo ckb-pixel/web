@@ -10,7 +10,7 @@ export const updatePaper = () => {
     if (canvas) {
       mosaic(data.samples, canvas)
     }
-    document.body.classList.remove('initing')
+    document.body.classList.add('loaded')
   })
 }
 
@@ -24,18 +24,35 @@ export const initPaper = () => {
   }
 }
 
+export const updateIpoInfo = () => {
+  client.getIpoInfo().then(res => {
+    const address = res?.attributes.from_address
+    if (address) {
+      const title = document.querySelector('.main-title')
+      if (title) {
+        const text = document.createElement('div')
+        text.innerText = `Thranks for your support\n${address}`
+        text.className = 'support'
+        title.appendChild(text)
+      }
+    }
+  })
+}
+
 export const start = () => {
   /**
    * init the paper
    */
-  // initPaper()
+  initPaper()
+
+  updateIpoInfo()
 
   /**
    * start pooling the current state
    */
-  // const INTERVAL_TIME = 10000
-  // updatePaper()
-  // setInterval(updatePaper, INTERVAL_TIME)
+  const INTERVAL_TIME = 10000
+  updatePaper()
+  setInterval(updatePaper, INTERVAL_TIME)
 
   /**
    * update the snapshots

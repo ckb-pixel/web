@@ -47,6 +47,10 @@ export default class Data {
     })
   }
 
+  public getSample = (x: number, y:number) => {
+    return this.#samples.find(s => s.coordinates[0] === x && s.coordinates[1] === y)
+  }
+
 }
 
 export const data = new Data()

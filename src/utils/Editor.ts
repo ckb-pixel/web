@@ -1,5 +1,5 @@
 import paper from 'paper/dist/paper-core'
-import { SIZE, BORDER_COLOR } from './const'
+import { SIZE } from './const'
 import {data} from './Data'
 import purchase from './purchase'
 
@@ -44,8 +44,8 @@ export default class Editor {
   }
 
   set color(color: Partial<Color>) {
-    Object.keys(color).forEach(key => {
-      this.#editor[key].value = color[key]
+    Object.keys(color).forEach((key: string) => {
+      this.#editor[key].value = color[key as keyof typeof color]
     })
     this.updatePreview()
   }
@@ -58,16 +58,15 @@ export default class Editor {
   }
 
   set coordinates(coordinates: Partial<Coordinates>){
-    Object.keys(coordinates).forEach(key => {
-      this.#editor[key].value = coordinates[key as keyof typeof Coordinates]
+    Object.keys(coordinates).forEach((key: string) => {
+      this.#editor[key].value = coordinates[key as keyof typeof coordinates]
     })
   }
 
   public submit = (e: Event) => {
     e.preventDefault()
     e.stopPropagation()
-    purchase({})
-    console.log(`submit: ${JSON.stringify(this.color)}, ${JSON.stringify(this.coordinates)}`)
+    purchase({coordinates: this.coordinates, color: this.color})
   }
 
   public selected = (coordinates: Coordinates, color?: Color) => {
@@ -79,23 +78,24 @@ export default class Editor {
     if (color) {
       this.color = color
     }
-    this.#editor.querySelector('button')?.disabled = false
+    this.#editor.querySelector('button[type=submit]')!.disabled = false
   }
 
   public unselected = () => {
     this.#selected = null
-    this.#editor.querySelector('button')?.disabled = true
+    this.#editor.querySelector('button[type=submit]')!.disabled = true
   }
 
   private updatePreview = ()=>{
     const previewColor = `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`
     this.#preview.style.backgroundColor = previewColor
     const text = `${previewColor.toUpperCase()}\n${rgbToHex(this.color).toUpperCase()}`
-    this.#preview.querySelector('span')?.innerText = text
+    this.#preview.querySelector('span')!.innerText = text
     if (this.#selected) {
-      console.log(this.#selected)
-      const cell = data.getCell({coordinates: [this.#selected.x -SIZE/2, this.#selected.y -SIZE/2]})
-      cell?.fillColor = new paper.Color(previewColor)
+      const cell = data.getCell({coordinates: [this.#selected.x - SIZE / 2, this.#selected.y - SIZE / 2]})
+      if(cell) {
+        cell.fillColor = new paper.Color(previewColor)
+      }
     }
   }
 
