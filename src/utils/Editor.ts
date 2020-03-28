@@ -1,6 +1,6 @@
 import paper from 'paper/dist/paper-core'
 import { SIZE, BORDER_COLOR } from './const'
-
+import purchase from './purchase'
 
 export interface Color {
   r: number
@@ -65,6 +65,7 @@ export default class Editor {
   public submit = (e: Event) => {
     e.preventDefault()
     e.stopPropagation()
+    purchase()
     console.log(`submit: ${JSON.stringify(this.color)}, ${JSON.stringify(this.coordinates)}`)
   }
 
