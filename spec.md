@@ -14,23 +14,23 @@ PXT 的持有者将享有 Pixel 游戏持续的分红。
 
 **游戏初始化**
 
-Pixel 初始化时为一幅 50\*50 共计 2500 个像素点的像素画，每一个像素点都是一个 NFT（Non-Fungible Token），其中会记录有这个像素点的坐标和颜色信息。
+Pixel 初始化时为一幅 50 \* 50 共计 2500 个像素点的像素画，每一个像素点都是一个 NFT（Non-Fungible Token），其中会记录有这个像素点的坐标和颜色信息。
 
-初始化时，每个像素点的 Capacity 为 666 CKB。666\*50\*50 = 1,665,000，也就是说我们会将 IPO 得到的所有 CKB 都直接存入像素点中。
+初始化时，每个像素点的 Capacity 为 666 CKB。666 \* 50 \* 50 = 1,665,000，也就是说我们会将 IPO 得到的所有 CKB 都直接存入像素点中。
 
 **游戏开始**
 
-用户可以购买任意像素点，购买时先选择想要购买的像素点，然后选择希望更改成的颜色，之后将发起购买交易。
+用户可以购买任意像素点，购买时先选择想要购买的像素点，然后选择希望更改成的颜色，连接 [Keyper](https://github.com/ququzone/keyper-scatter) 后发起购买交易。
 
-用户购买像素点时，需支付大于等于当前像素点 capacity 1.3 倍的 CKB。其中：
+用户购买像素点时，需支付大于等于当前像素点 Capacity 1.3 倍的 CKB。其中：
 
-- 当前像素点 capacity 1.2 倍的 CKB 给到当前像素点拥有者
-- 当前像素点 capacity 0.1 倍的 CKB 将等比例分给每一位 PXT 持有者
-- 当前像素点 capacity + 用户购买时超出 1.3 倍部分的任意数量的 CKB，成为新用户拥有的像素点的 capacity，用于提升下一轮收益或锁定像素点。
+- 当前像素点 Capacity 1.2 倍的 CKB 给到当前像素点拥有者
+- 当前像素点 Capacity 0.1 倍的 CKB 将等比例分给每一位 PXT 持有者
+- 当前像素点 Capacity + 用户购买时超出 1.3 倍部分的任意数量的 CKB，成为新用户拥有的像素点的 Capacity，用于提升下一轮收益或锁定像素点。
 
 **Pixel Pool**
 
-考虑到像素点初始化是由团队进行的，所以每个像素点第一次被购买时，团队将获得 799.2（666\*1.2） 个 CKB，我们将其中 666 个 CKB 存放入 Pixel Pool 用于后续 Pixel 生态发展基金，而将剩余的 133.2 个 CKB 等比例分给每一位 PXT 持有者。
+考虑到像素点初始化是由团队进行的，所以每个像素点第一次被购买时，团队将获得 799.2（666 \* 1.2）个 CKB，我们将其中 666 个 CKB 存放入 Pixel Pool 用于后续 Pixel 生态发展基金，而将剩余的 133.2 个 CKB 等比例分给每一位 PXT 持有者。
 
 ## 角色分析
 
@@ -38,9 +38,9 @@ Pixel 初始化时为一幅 50\*50 共计 2500 个像素点的像素画，每一
 
 每一个 Pixel 都是一个 NFT，是一个具有内在价值、实际使用价值、收藏价值的数字资产。
 
-- Pixel 的内在价值是由 capacity 也就是 CKB 决定，而 CKB 是具有真实稀缺性和强大升值空间的一种数字资产。
+- Pixel 的内在价值是由 Capacity 也就是 CKB 决定，而 CKB 是具有真实稀缺性和强大升值空间的一种数字资产。
 - Pixel 具有实际使用价值。每一个 Pixel 内都包含了坐标和颜色的参数，是组成 Pixel 画布的一员，用户购买像素点的同时，也获得了更改像素点颜色的权力，用户可以在像素点中放入自己喜欢的像素点。
-- Pixel 具有收藏价值。因为后一位购买者需要支付当前像素点 capacity 1.2 倍的 CKB 给到当前像素点的拥有者，因此每一个 Pixel 都具有升值空间和收藏价值。
+- Pixel 具有收藏价值。因为后一位购买者需要支付当前像素点 Capacity 1.2 倍的 CKB 给到当前像素点的拥有者，因此每一个 Pixel 都具有升值空间和收藏价值。
 
 **Pixel 游戏参与者**
 
@@ -53,9 +53,9 @@ Pixel 参与者实际掌握了像素点的定价权力：
 
 **PXT 持有者**
 
-PXT 持有者将永久享受 Pixel 游戏带来的分红，是 Pixel 最坚实的后盾。每当有一个像素点被游戏参与者购买，PXT 持有者都将等比例分配该像素点 capacity 0.1 倍的收益。
+PXT 持有者将永久享受 Pixel 游戏带来的分红，是 Pixel 最坚实的后盾。每当有一个像素点被游戏参与者购买，PXT 持有者都将等比例分配该像素点 Capacity 0.1 倍的收益。
 
-随着 Pixel 生态的不断地繁荣，PXT 持有者们将持续地享受生态发展带来的福利。
+随着 Pixel 生态的不断地繁荣，PXT 持有者们将持续地享受生态发展带来的收益。
 
 **Pixel 开发团队**
 
@@ -67,17 +67,17 @@ Pixel 开发团队将持续地为 Pixel 添加新的功能，让更多用户可�
 
 **智能合约**
 
-本次我们共部署了两个合约，一个是 Pixel 基础信息的 type script，另一个是 Pixel 买卖规则的 lock script。
+本次我们共部署了两个合约，一个是 Pixel 基础信息的 Type Script，另一个是 Pixel 买卖规则的 Lock Script。
 
-- Pixel 基础信息的 type script。包含了 Pixel 的基础信息：坐标和颜色
+- Pixel 基础信息的 Type Script。包含了 Pixel 的基础信息：坐标和颜色
 
   - 坐标在交易前后不能发生变化
   - 颜色可以在交易前后发生变化
 
-- Pixel 买卖规则的 lock script。包含了 Pixle 的买卖规则：
-  - 原像素点持有者的地址：output 的 capacity 需要是原像素点 capacity 的 1.2 倍
-  - 官方团队的地址：output 的 capacity 需要时原像素点 capacity 的 0.1 倍
-  - 像素点购买者：在 output 中获得一个 capacity 大于等于原像素点 capacity 的 Pixel NFT
+- Pixel 买卖规则的 Lock Script。包含了 Pixle 的买卖规则：
+  - 原像素点持有者的地址：Output 的 Capacity 需要是原像素点 Capacity 的 1.2 倍
+  - 官方团队的地址：Output 的 Capacity 需要时原像素点 Capacity 的 0.1 倍
+  - 像素点购买者：在 Output 中获得一个 Capacity 大于等于原像素点 Capabity 的 Pixel NFT
 
 ## 下一版 Pixel：可租赁的 Pixel
 
@@ -100,14 +100,14 @@ Pixel 开发团队将持续地为 Pixel 添加新的功能，让更多用户可�
 - 3/27 23：00
 
   - 前端完成基础内容
-  - Pixel 的 type script 完成
-  - 后端完成 live cell 检索和收集
+  - Pixel 的 Type Script 完成
+  - 后端完成 Live Cell 检索和收集
   - PPT 部分完成思路整理
 
 - 3/28 14：00
 
   - 前后端接口进行对接
-  - Pixel 的 lock script 基本完成
+  - Pixel 的 Lock Script 基本完成
   - PPT 迷茫中
 
 ## 演示数据
@@ -153,27 +153,3 @@ Pixel 开发团队将持续地为 Pixel 添加新的功能，让更多用户可�
   https://explorer.nervos.org/aggron/transaction/0xf0bf2a9ee8b657345d6115aaf9b139a40e174c435ed67a1315ec1579296b2a8c
   https://explorer.nervos.org/aggron/transaction/0x3422d67fc729bfce9190025109fb2bb4cd6430433434f5a5d4c675090c7653a1
 ```
-
----
-
-# web
-
-The project for rendering pixels
-
-## About Pixel
-
-This is a co-operative multiplayer pixel painting game based on CKB. Users can buy, tintage and lease pixels.
-
-The team will issue Pixel Token to help the project develop fast.
-
-## About Team
-
-Yang Xueping: NFT design and implementation
-
-Shao Junda: NFT's data sync and matchmaking tradeoff system, as well as Pixel Token distribution
-
-Chen Yu: NFT's visualization and matchmaking tradeoff system
-
-Zhang Mingyuan: Technical support and service deployment
-
-Jason Cai: PPT
