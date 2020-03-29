@@ -1,5 +1,5 @@
 import paper from 'paper/dist/paper-core'
-import { SIZE } from './const'
+import { SIZE, EXPLORER_URL, EXPLORER_URL } from './const'
 import {data} from './Data'
 import purchase from './purchase'
 
@@ -12,6 +12,11 @@ export interface Color {
 export interface Coordinates {
   x: number
   y: number
+}
+
+export interface Info {
+  outPoint: CKBComponents.OutPoint,
+  addr: string
 }
 
 const rgbToHex = (color: Partial<Color>) => {
@@ -69,7 +74,7 @@ export default class Editor {
     purchase({coordinates: this.coordinates, color: this.color})
   }
 
-  public selected = (coordinates: Coordinates, color?: Color) => {
+  public selected = (coordinates: Coordinates, color?: Color, info: Info) => {
     this.#selected = coordinates
     this.coordinates = {
       x: coordinates.x / SIZE + 0.5,
@@ -78,12 +83,29 @@ export default class Editor {
     if (color) {
       this.color = color
     }
+    if (info) {
+      const cellBtn = document.querySelector<HTMLButtonElement>('#cell')
+      const ownerBtn = document.querySelector<HTMLButtonElement>('#owner')
+      if (cellBtn && ownerBtn) {
+        console.log(info)
+        cellBtn.dataset.link = `${EXPLORER_URL}transaction/${info.outPoint.txHash}#${info.outPoint.index}`
+        ownerBtn.dataset.link = `${EXPLORER_URL}address/${info.addr}`
+        cellBtn.disabled = false
+        ownerBtn.disabled = false
+      }
+    }
     this.#editor.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = false
   }
 
   public unselected = () => {
     this.#selected = null
     this.#editor.querySelector<HTMLButtonElement>('button[type=submit]')!.disabled = true
+    const cellBtn = document.querySelector<HTMLButtonElement>('#cell')
+    const ownerBtn = document.querySelector<HTMLButtonElement>('#owner')
+    if (cellBtn && ownerBtn) {
+      cellBtn.disabled = true
+      ownerBtn.disabled = true
+    }
   }
 
   private updatePreview = ()=>{
@@ -102,6 +124,20 @@ export default class Editor {
   private registerEvents = () => {
     this.#editor.onchange = this.updatePreview
     this.#editor.onsubmit = this.submit
+
+    document.querySelector<HTMLButtonElement>('#cell')?.addEventListener('click', (e) => {
+      const { dataset: {link}} = e.target as HTMLButtonElement
+      if (link) {
+        window.open(link)
+      }
+    })
+    document.querySelector<HTMLButtonElement>('#owner')?.addEventListener('click', (e) => {
+      const { dataset: { link } } = e.target as HTMLButtonElement
+      if (link) {
+        window.open(link)
+      }
+    })
+
   }
 
 }

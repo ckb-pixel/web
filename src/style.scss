@@ -207,7 +207,7 @@ input {
     justify-content: space-between;
     margin-bottom: 30px;
 
-    &>div {
+    & > div {
       width: 45%;
       display: flex;
 
@@ -268,11 +268,20 @@ input {
       border-radius: 7.5px;
     }
   }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    button {
+      margin-top: 5px;
+      user-select: none;
+    }
+  }
 }
 
 .preview {
   margin-top: 30px;
-  flex: 1;
 
   .color {
     height: 100px;

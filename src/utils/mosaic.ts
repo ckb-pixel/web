@@ -1,3 +1,4 @@
+import { bech32Address } from '@nervosnetwork/ckb-sdk-utils'
 import paper from 'paper/dist/paper-core'
 import { SIZE, LENGTH, BORDER_COLOR } from './const'
 import { editor } from './Editor'
@@ -40,12 +41,20 @@ const mosaic = (samples: Sample[], canvas: HTMLCanvasElement) => {
       if (isPointInCell(e.point, cell)) {
         cell.selected = !cell.selected
         if (cell.selected) {
+          const info = {
+            outPoint: samples[i].outPoint,
+            addr: bech32Address(samples[i].lock.args),
+          }
           const { color } = samples[i]
-          editor.selected(cell.position, {
-            r: color[0],
-            g: color[1],
-            b: color[2],
-          })
+          editor.selected(
+            cell.position,
+            {
+              r: color[0],
+              g: color[1],
+              b: color[2],
+            },
+            info,
+          )
         } else {
           editor.unselected()
         }

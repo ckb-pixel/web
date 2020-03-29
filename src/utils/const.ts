@@ -44,5 +44,7 @@ export const LockCellDep: CKBComponents.CellDep = {
 export const PixelLock: CKBComponents.Script = {
   codeHash: '0xe959ac726354858d598c9ea1ceb5f617e409b1b0a4a3baa25aa08b6da7b95091',
   args: '',
-  hashType: 'type'
+  hashType: 'type',
 }
+
+export const EXPLORER_URL = 'https://explorer.nervos.org/aggron/'
