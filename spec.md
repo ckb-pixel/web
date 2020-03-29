@@ -5,9 +5,9 @@
 
 ### 代币发行
 
-开发团队将会发行 2,000,000 的 PXT（Piexl Token）以帮助项目快速发展。
+Pixel 开发团队将会发行 2,000,000 的 PXT（Piexl Token）以帮助项目启动及快速发展。
 
-发行的 2,000,000 枚 PXT，其中 1,665,000 枚 PXT 将以 1 PXT = 1 CKB 的售价，进行 IPO（Initial Pixel Offering），剩余 335,000 枚 PXT 将归团队所有。
+发行的 2,000,000 枚 PXT 中，1,665,000 枚 PXT 将以 1 PXT = 1 CKB 的售价，进行 IPO（Initial Pixel Offering），剩余 335,000 枚 PXT 将归团队所有用于项目维护与持续激励。
 
 PXT 的持有者将享有 Pixel 游戏持续的分红。
 
@@ -27,7 +27,7 @@ Pixel 初始化时为一幅 50\*50 共计 2500 个像素点的像素画，每一
 
 * 当前像素点 capacity 1.2 倍的 CKB 给到当前像素点拥有者
 * 当前像素点 capacity 0.1 倍的 CKB 将等比例分给每一位 PXT 持有者
-* 当前像素点 capacity + 用户购买时超出 1.3 倍部分的任意数量的 CKB，成为新用户拥有的像素点的 capacity
+* 当前像素点 capacity + 用户购买时超出 1.3 倍部分的任意数量的 CKB，成为新用户拥有的像素点的 capacity，用于提升下一轮收益或锁定像素点。
 
 **Pixel Pool**
 
@@ -111,7 +111,34 @@ Pixel 开发团队将持续地为 Pixel 添加新的功能，让更多用户可�
 * PPT 迷茫中
 
 
+## 演示数据
 
+回放交易列表：
+```
+  https://explorer.nervos.org/aggron/transaction/0x0542dd63eb4a539ec67bd7e7f2a6d59e777c5062a4212347a2c5574d18de3510
+  https://explorer.nervos.org/aggron/transaction/0x6f5edba9782b3468541bd0fc7db18e32eb830b8de5957ea5ad8c365241942ce7
+  https://explorer.nervos.org/aggron/transaction/0x58e2f3df1c57e93c92e02a22040b35156da7f4d88bf434212c3846d89367d52b
+  https://explorer.nervos.org/aggron/transaction/0x7af827162397a89e20ecbddcc6e5fa350f9c21abe55c5c4de7eee88c1d4f9404
+  https://explorer.nervos.org/aggron/transaction/0xbe1faf676ed94f8f9c280ed80f14b28f063c9c07b94288269ebb003d46e0d4fc
+  https://explorer.nervos.org/aggron/transaction/0x720dccb0e5e84c72ff1c5bfc9847da268909fa9ea4b8140d50a0a66f894b4d11
+  https://explorer.nervos.org/aggron/transaction/0xc7874013fb6c8725f7bc71f8b3d31c29477b9558a0319df3801954e8a70b2575
+  https://explorer.nervos.org/aggron/transaction/0xc4af4b2981ad4d0f9bcac4f55e537a277715401a114126069bef73f32e58dbd8
+  https://explorer.nervos.org/aggron/transaction/0xa11fb3e87331912f4fdea53a4da6841162e679d0721ff27a358079e6db68c5e9
+  https://explorer.nervos.org/aggron/transaction/0x06250022122375f773124e78a5935b428d1c410443005578e1d630e5f3393ee4
+  https://explorer.nervos.org/aggron/transaction/0xbcd9d32f98b3dd775bc0427306d013aae68413ef3eeacaba98e9ad9002c24b91
+  https://explorer.nervos.org/aggron/transaction/0xce7d31fab9a0cab493eff61c5e9357de53d9abd2845f55583e2851410bf47051
+  https://explorer.nervos.org/aggron/transaction/0x22d9824f64477e93593a1a71ae9c124da89f28576d6166ec6df66a1e2bb306c7
+  https://explorer.nervos.org/aggron/transaction/0x8a40dff1a430188165d7020ef818ab9e7d8c9719ecb7a8ace61bddcdd6ec3a7f
+  https://explorer.nervos.org/aggron/transaction/0xec69c875e4a52988ae4774f128e2fbeeb2e24e23bc26087f9bfd3430f99e6cfe
+  https://explorer.nervos.org/aggron/transaction/0x96aca1332669dfbbd516bd6ad67b450a93ec8e14277071ac1d2d0afd2fd7d959
+  https://explorer.nervos.org/aggron/transaction/0xf0fa19d65aa91321d6d690274bd8c41ad5cde771f831b7dcb5e61f6d3d53a5f4
+  https://explorer.nervos.org/aggron/transaction/0x9dd8fc2b5bb6869b7c37b17264d0fd5eab6e26d7c315cf971ac2248dad2cb111
+  https://explorer.nervos.org/aggron/transaction/0xfc68c95db049626a12642e46dc820039acadd425ffc7d739e098cf50ac652db1
+  https://explorer.nervos.org/aggron/transaction/0x35b2bab44ff40d8d2fa414e3b36f0e1e2c8aa05733ff037bc9d31224be669d80
+  https://explorer.nervos.org/aggron/transaction/0xa583049d3a5beceaa035b0dcdff44084d99c23cc19e167db0235a7ba71bf3ac0
+  https://explorer.nervos.org/aggron/transaction/0xf0bf2a9ee8b657345d6115aaf9b139a40e174c435ed67a1315ec1579296b2a8c
+  https://explorer.nervos.org/aggron/transaction/0x3422d67fc729bfce9190025109fb2bb4cd6430433434f5a5d4c675090c7653a1
+```
 ---
 
 # web
