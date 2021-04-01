@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "@nervosnetwork/ckb-sdk-utils": "0.30.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bn.js": "^5.1.1",
     "paper": "0.12.4"
   },
